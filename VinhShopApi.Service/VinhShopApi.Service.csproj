@@ -30,7 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,7 +57,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonService.cs" />
+    <Compile Include="ContactDetailService.cs" />
+    <Compile Include="ErrorService.cs" />
+    <Compile Include="FeedbackService.cs" />
+    <Compile Include="FunctionService.cs" />
+    <Compile Include="OrderService.cs" />
+    <Compile Include="PageService.cs" />
+    <Compile Include="PermissionService.cs" />
+    <Compile Include="PostCategoryService.cs" />
+    <Compile Include="PostService.cs" />
+    <Compile Include="ProductCategoryService.cs" />
+    <Compile Include="ProductImageService.cs" />
+    <Compile Include="ProductQuantityService.cs" />
+    <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VinhShopApi.Common\VinhShopApi.Common.csproj">
+      <Project>{127e3e10-063b-4042-a6d7-9942b0fabe37}</Project>
+      <Name>VinhShopApi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VinhShopApi.Data\VinhShopApi.Data.csproj">
+      <Project>{304c2e41-1449-4426-a33c-29534146c414}</Project>
+      <Name>VinhShopApi.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VinhShopApi.Model\VinhShopApi.Model.csproj">
+      <Project>{41d56669-47b9-4b5e-a314-ecc4f8e8c3af}</Project>
+      <Name>VinhShopApi.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
