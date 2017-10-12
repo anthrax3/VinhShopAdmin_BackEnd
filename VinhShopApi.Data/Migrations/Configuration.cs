@@ -1,5 +1,8 @@
-namespace VinhShopApi.Data.Migrations
+﻿namespace VinhShopApi.Data.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Model.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +29,42 @@ namespace VinhShopApi.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            CreateUser(context);
+        }
+
+        private void CreateUser(VinhShopDbContext context)
+        {
+            var manager = new UserManager<AppUser>(new UserStore<AppUser>(new VinhShopDbContext()));
+            if (manager.Users.Count() == 0)
+            {
+                var roleManager = new RoleManager<AppRole>(new RoleStore<AppRole>(new VinhShopDbContext()));
+
+                var user = new AppUser()
+                {
+                    UserName = "admin",
+                    Email = "quangvinh050293@gmail.com",
+                    EmailConfirmed = true,
+                    BirthDay = DateTime.Now,
+                    FullName = "Đặng Quang Vinh",
+                    Avatar = "/assets/images/img.jpg",
+                    Gender = true,
+                    Status = true
+                };
+                if (manager.Users.Count(x => x.UserName == "admin") == 0)
+                {
+                    manager.Create(user, "123654$");
+
+                    if (!roleManager.Roles.Any())
+                    {
+                        roleManager.Create(new AppRole { Name = "Admin", Description = "Quản trị viên" });
+                        roleManager.Create(new AppRole { Name = "Member", Description = "Người dùng" });
+                    }
+
+                    var adminUser = manager.FindByName("admin");
+
+                    manager.AddToRoles(adminUser.Id, new string[] { "Admin", "Member" });
+                }
+            }
         }
     }
 }
