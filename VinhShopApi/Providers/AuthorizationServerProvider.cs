@@ -38,8 +38,8 @@ namespace VinhShopApi.Providers
             catch
             {
                 // Could not retrieve the user due to error.
-                context.SetError("server_error", "Lỗi trong quá trình xử lý.");
                 context.Rejected();
+                context.SetError("server_error", "Lỗi trong quá trình xử lý.");
                 return;
             }
             if (user != null)
@@ -70,8 +70,9 @@ namespace VinhShopApi.Providers
             }
             else
             {
-                context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.");
                 context.Rejected();
+                context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.");
+                return;
             }
         }
 
