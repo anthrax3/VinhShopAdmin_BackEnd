@@ -10,6 +10,10 @@ namespace VinhShopApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            //var cors = new EnableCorsAttribute(
+            //origins: "*",
+            //headers: "*",
+            //methods: "*");
             config.EnableCors();
             // Web API routes
             config.MapHttpAttributeRoutes();

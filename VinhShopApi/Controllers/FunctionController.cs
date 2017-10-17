@@ -14,8 +14,8 @@ using VinhShopApi.Service;
 
 namespace VinhShopApi.Controllers
 {
-    [Authorize]
     [RoutePrefix("api/function")]
+    [Authorize]
     public class FunctionController : ApiControllerBase
     {
         private IFunctionService _functionService;
@@ -40,7 +40,7 @@ namespace VinhShopApi.Controllers
                 {
                     model = _functionService.GetAllWithPermission(User.Identity.GetUserId());
                 }
-
+                //model = _functionService.GetAll(string.Empty);
                 IEnumerable<FunctionViewModel> modelVm = Mapper.Map<IEnumerable<Function>, IEnumerable<FunctionViewModel>>(model);
                 var parents = modelVm.Where(x => x.Parent == null);
                 foreach (var parent in parents)
