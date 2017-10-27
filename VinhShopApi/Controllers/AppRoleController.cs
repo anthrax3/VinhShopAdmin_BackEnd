@@ -37,7 +37,7 @@ namespace VinhShopApi.Controllers
                 var query = AppRoleManager.Roles;
                 if (!string.IsNullOrEmpty(filter))
                 {
-                    query = query.Where(r => r.Description == filter);
+                    query = query.Where(r => r.Description == filter || r.Name == filter);
                 }
                 totalRow = query.Count();
 
@@ -132,9 +132,9 @@ namespace VinhShopApi.Controllers
             });
         }
 
-        [Route("detail/{id:int}")]
+        [Route("detail/{id}")]
         [HttpGet]
-        public HttpResponseMessage Detail(HttpRequestMessage request, string id)
+        public HttpResponseMessage Details(HttpRequestMessage request, string id)
         {
             return CreateHttpResponse(request, () =>
             {

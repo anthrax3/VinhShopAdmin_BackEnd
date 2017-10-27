@@ -3,7 +3,7 @@
     public class DbFactory : Disposable, IDbFactory
     {
         private VinhShopDbContext dbContext;
-
+        
         public VinhShopDbContext Init()
         {
             return dbContext ?? (dbContext = new VinhShopDbContext());
