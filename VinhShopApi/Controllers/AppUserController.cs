@@ -38,9 +38,15 @@ namespace VinhShopApi.Controllers
             {
                 HttpResponseMessage response = null;
                 int totalRow = 0;
-                var model = AppUserManager.Users;
-                IEnumerable<AppUserViewModel> modelVm = Mapper.Map<IEnumerable<AppUser>, IEnumerable<AppUserViewModel>>(model);
+                var query = AppUserManager.Users;
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    query = query.Where(r => r.FullName == filter || r.UserName == filter);
+                }
+                totalRow = query.Count();
 
+                var model = query.OrderBy(x => x.FullName).Skip((page - 1) * pageSize).Take(pageSize);
+                IEnumerable<AppUserViewModel> modelVm = Mapper.Map<IEnumerable<AppUser>, IEnumerable<AppUserViewModel>>(model);
                 PaginationSet<AppUserViewModel> pagedSet = new PaginationSet<AppUserViewModel>()
                 {
                     PageIndex = page,

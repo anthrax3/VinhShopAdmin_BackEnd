@@ -65,7 +65,7 @@ namespace VinhShopApi.Controllers
             });
         }
 
-        [Route("detail/{id:int}")]
+        [Route("detail/{id}")]
         [HttpGet]
         public HttpResponseMessage GetById(HttpRequestMessage request, string id)
         {
@@ -161,7 +161,7 @@ namespace VinhShopApi.Controllers
                 }
                 _functionService.Delete(id);
                 _functionService.Save();
-
+                response = request.CreateResponse(HttpStatusCode.OK, id);
                 return response;
             });
 

@@ -31,7 +31,7 @@
             //    );
             //
             //CreateUser(context);
-            CreateFunction(context);
+            //CreateFunction(context);
         }
 
         private void CreateFunction(VinhShopDbContext context)
@@ -83,7 +83,7 @@
                 var user = new AppUser()
                 {
                     UserName = "admin",
-                    Email = "quangvinh050293@gmail.com",
+                    Email = "quangvinhisc@gmail.com",
                     EmailConfirmed = true,
                     BirthDay = DateTime.Now,
                     FullName = "Đặng Quang Vinh",

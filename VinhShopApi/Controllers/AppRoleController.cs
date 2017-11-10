@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using VinhShopApi.Infrastructure.Core;
 using VinhShopApi.Infrastructure.Extensions;
@@ -50,7 +51,13 @@ namespace VinhShopApi.Controllers
                     TotalRows = totalRow,
                     Items = modelVm
                 };
-
+                IEnumerable<string> originValues = null;
+                Request.Headers.TryGetValues("Origin", out originValues);
+                if (Request.Headers.Contains("Origin"))
+                {
+                    var values = Request.Headers.GetValues("Origin");
+                    // Do stuff with the values... probably .FirstOrDefault()
+                }
                 response = request.CreateResponse(HttpStatusCode.OK, pagedSet);
                 return response;
             });
@@ -63,6 +70,7 @@ namespace VinhShopApi.Controllers
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
+                
                 var model = AppRoleManager.Roles.ToList();
                 IEnumerable<ApplicationRoleViewModel> modelVm = Mapper.Map<IEnumerable<AppRole>, IEnumerable<ApplicationRoleViewModel>>(model);
 
