@@ -76,6 +76,7 @@ namespace VinhShopApi.Controllers
 
                 response = request.CreateResponse(HttpStatusCode.OK, modelVm);
 
+
                 return response;
             });
         }
